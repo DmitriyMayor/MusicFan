@@ -1,28 +1,28 @@
-import kotlin.time.times
-
 fun main() {
-    var sum = readln()
-    var buyer = Buyer(true)
-    var sumAfterDiscount: Int = 0
+    val sum = readln()
+    val buyer = Buyer(true)
+    var sumAfterDiscount = 0.0
 
 
-    fun countSum(buyer: Buyer, sum: Int): Int {
+    fun countSum(buyer: Buyer, sum: Int): Double {
 
         if (buyer.regularCustomer) {
             if (sum > 10_000) {
-                sumAfterDiscount = (sum / 100) * 94
+                sumAfterDiscount = sum * 0.95 * 0.99
+            } else if (sum in 1001..10_000) {
+                sumAfterDiscount = (sum - 100) * 0.99
             }
-            if (sum in 1001..10_000) {
-                sumAfterDiscount = ((sum * 0.99) - 100).toInt()
-            } else sumAfterDiscount = sum
         } else {
             if (sum > 10_000) {
-                sumAfterDiscount = (sum / 100) * 95
+                sumAfterDiscount = sum * 0.95
+            } else if (sum in 1001..10_000) {
+                sumAfterDiscount = ((sum - 100).toDouble())
+            } else {
+                sumAfterDiscount = sum.toDouble()
             }
-            if (sum in 1001..10_000) {
-                sumAfterDiscount = sum - 100
-            } else sumAfterDiscount = sum
         }
+
+
 
         return sumAfterDiscount
     }
